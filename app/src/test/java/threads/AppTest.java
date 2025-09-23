@@ -15,4 +15,8 @@ class AppTest {
     @Test void testThreads01() {
         ThreadExamples.threads01(10);
     }   
+
+    @Test void testThreads00() {
+        ThreadExamples.threads00(8);
+    }
 }

@@ -12,18 +12,15 @@ public class ThreadExamples {
         // Example 1: Creating and starting a thread using a Runnable
         Runnable task = () -> {
             for (int i = 0; i < loopCount; i++) {
-                System.out.println("Runnable Task - Count: " + i);
                 int randomSleep = random.nextInt((max - min) + 1) + min;
                 try {
                     Thread.sleep(randomSleep); // Sleep for 500 milliseconds
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
+                System.out.println("Runnable Task - Count: " + i);
             }
         };
-
-        Thread thread1 = new Thread(task);
-        thread1.start();
 
         Random random2 = new Random();
         int min2 = 300;
@@ -34,15 +31,18 @@ public class ThreadExamples {
             public void run() {
                 for (int i = 0; i < loopCount; i++) {
                     int randomSleep = random2.nextInt((max2 - min2) + 1) + min2;
-                    System.out.println("MyThread - Count: " + i);
                     try {
                         Thread.sleep(randomSleep); // Sleep for 700 milliseconds
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     }
+                    System.out.println("MyThread - Count: " + i);
                 }
             }
         }
+
+        Thread thread1 = new Thread(task);
+        thread1.start();
 
         MyThread thread2 = new MyThread();
         thread2.start();
@@ -65,28 +65,43 @@ public class ThreadExamples {
             @Override
             public void run() {
                 for (int i = 0; i < loopCount; i++) {
-                    Thread.sleep(10);
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
                     System.out.println("Running in the old way.");
                 }
             };
         };
     
-        Thread t = new Thread(oldWay);
-        t.start();
-
         // newer way, Lambda expression
         Runnable newWay = () -> {
              for (int i = 0; i < loopCount; i++) {
-                Thread.sleep(50);
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 System.out.println("Running with a lambda.");
              }
         };
+
+        Thread t = new Thread(oldWay);
+        t.start();
+
         Thread t2 = new Thread(newWay);    
         t2.start();
 
-        // wait for thread t to finish
-        t.join();
-        // wait for thread t2 to finish
-        t2.join();
+        try {
+            // wait for thread t to finish
+            t.join();
+            // wait for thread t2 to finish
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+      
         System.out.println("Both threads have finished.");
+    }
 }
