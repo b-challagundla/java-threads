@@ -66,7 +66,7 @@ public class ThreadExamples {
             public void run() {
                 for (int i = 0; i < loopCount; i++) {
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(50);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     }
@@ -83,7 +83,7 @@ public class ThreadExamples {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Running with a lambda.");
+                System.out.println("Running in the new way.");
              }
         };
 
