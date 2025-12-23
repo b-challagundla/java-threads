@@ -10,5 +10,9 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '1.0.0'
 }
 
+<<<<<<< HEAD
 rootProject.name = 'Assignment5'
+=======
+rootProject.name = 'threads'
+>>>>>>> 07208616e97901c0d1776db7d0ff3b0a2a6b756a
 include('app')

@@ -34,10 +34,22 @@ java {
 
 application {
     // Define the main class for the application.
+<<<<<<< HEAD
     mainClass = 'assignment5.App'
+=======
+    mainClass = 'java.threads.App'
+>>>>>>> 07208616e97901c0d1776db7d0ff3b0a2a6b756a
 }
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+<<<<<<< HEAD
+=======
+    test {
+        testLogging {
+            showStandardStreams = true
+        }
+    }
+>>>>>>> 07208616e97901c0d1776db7d0ff3b0a2a6b756a
 }
